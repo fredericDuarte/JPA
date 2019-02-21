@@ -3,6 +3,7 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
 	version="2.1">
+	<!-- bibliotheque -->
 	<persistence-unit name="myBase"
 		transaction-type="RESOURCE_LOCAL">
 		<!-- fourni les éléments d'entity manager -->
@@ -18,7 +19,42 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
 				value="com.mysql.jdbc.Driver" />
 			<!-- pour voir les requetes SQL -->
 			<property name="hibernate.show_sql" value="true" />
-			
+
+		</properties>
+	</persistence-unit>
+
+	<!-- Banque -->
+	<persistence-unit name="myBank"
+		transaction-type="RESOURCE_LOCAL">
+		<!-- fourni les éléments d'entity manager -->
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<class>main.banque.entite.Banque</class>
+		<class>main.banque.entite.Client</class>
+		<class>main.banque.entite.Compte</class>
+		<class>main.banque.entite.LivretA</class>
+		<class>main.banque.entite.AssuranceVie</class>
+		<class>main.banque.entite.Operation</class>
+		<class>main.banque.entite.Virement</class>
+		<properties>
+			<!-- parametres de connection JDBC -->
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://localhost:3306/banque?useSSL=true" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password"
+				value="rootu" />
+			<property name="javax.persistence.jdbc.driver"
+				value="com.mysql.jdbc.Driver" />
+			<!-- pour voir les requetes SQL -->
+			<property name="hibernate.show_sql" value="true" />
+			<!-- desactiver l&#39;autodetection des classes de type @Entity -->
+			<property name="hibernate.archive.autodetection" value="" />
+			<!-- Activation de la génération des tables manquantes uniquement -->
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<!-- Drop and create à chaque redémarrage -->
+			<property
+				name="javax.persistence.schema-generation.database.action"
+				value="drop-and-create" />
+
 		</properties>
 	</persistence-unit>
 </persistence>
